@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GSA Pro</string>
+    <string name="app_logo_description">GSA</string>
+    <string name="footer_text">©2024 CodersAlliance</string>
+    <string name="lorem_ipsum">Panchayat Service App</string>
+
+    <string name="about">This Project is under Development of CodersAlliance</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+</resources>

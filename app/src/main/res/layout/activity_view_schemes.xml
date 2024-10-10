@@ -5,16 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.gramsevak_list">
+    tools:context=".admin.view_schemes">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="35dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/glrv"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="DuplicateIds" />
+            android:layout_height="match_parent"/>
 
-        <!-- Other views can be added here -->
-
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

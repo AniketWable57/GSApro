@@ -20,4 +20,9 @@
         android:id="@+id/gramsevakList"
         android:title="Gramsevak Details"
         />
+    <item
+        android:id="@+id/SchemeList"
+        android:title="Scheme List"
+        />
+
 </menu>

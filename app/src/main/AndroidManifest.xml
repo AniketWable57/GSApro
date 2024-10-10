@@ -17,6 +17,17 @@
         android:theme="@style/Theme.GSAPro"
         tools:targetApi="31">
         <activity
+            android:name=".admin.view_schemes"
+            android:exported="false"
+            android:theme="@style/Theme.GSAPro" />
+        <activity
+            android:name=".admin.add_new_schemes"
+            android:exported="false" />
+        <activity
+            android:name=".admin.addScheme"
+            android:exported="false"
+            android:theme="@style/Theme.GSAPro" />
+        <activity
             android:name=".admin.gramsevak_list"
             android:exported="false" />
         <activity

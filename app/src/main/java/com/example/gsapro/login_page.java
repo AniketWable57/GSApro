@@ -13,23 +13,20 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gsapro.admin.admin_main;
 import com.example.gsapro.gramsevak.gramsevak_main;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
 public class login_page extends AppCompatActivity {
-Button BtnRegister;
-    Spinner rolesp;
+    private Button BtnRegister;
+    private Spinner rolesp;
     private EditText etUsername, etPassword;
     private Button btnLogin;
-    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -37,95 +34,79 @@ Button BtnRegister;
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login_page);
-         rolesp = findViewById(R.id.spinnerRole);
-        BtnRegister = findViewById(R.id.idBtnRegister);
 
+        rolesp = findViewById(R.id.spinnerRole);
+        BtnRegister = findViewById(R.id.idBtnRegister);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
 
-
-        BtnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(login_page.this, registration_page_user.class);
-                startActivity(intent);
-            }
+        BtnRegister.setOnClickListener(view -> {
+            Intent intent = new Intent(login_page.this, registration_page_user.class);
+            startActivity(intent);
         });
 
-        rolesp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getSelectedItem().toString();
-            }
+        ArrayList<String> roles = new ArrayList<>();
+        roles.add("users");
+        roles.add("GramSevak");
+        roles.add("Admin");
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("users");
-        arrayList.add("GramSevak");
-        arrayList.add("Admin");
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, roles);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         rolesp.setAdapter(adapter);
 
-// Initialize Firestore
-        db = FirebaseFirestore.getInstance();
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
-        btnLogin.setOnClickListener(view -> {
-            // Capture input data
-            String email = etUsername.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
-            String role = rolesp.getSelectedItem().toString().trim();
+        btnLogin.setOnClickListener(view -> loginUser());
+    }
 
-            // Check if fields are empty
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(login_page.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                return;
-            }
+    private void loginUser() {
+        String email = etUsername.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        String role = rolesp.getSelectedItem().toString().trim();
 
-            db.collection(role)
-                    .whereEqualTo("email",email )
-                    .whereEqualTo("password", password)
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                           QuerySnapshot querySnapshot = task.getResult();
-                            if (!querySnapshot.isEmpty()) {
-                                // Login successful, proceed to next activity
-                                Toast.makeText(login_page.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                                if (role == "users") {
-                                    Intent intent = new Intent(login_page.this, user_main.class);
-                                    startActivity(intent);
-                                    finish(); // Optional: Close the login activity
-                                } else if (role == "GramSevak") {
-                                    Intent intent = new Intent(login_page.this, gramsevak_main.class);
-                                    startActivity(intent);
-                                    finish(); // Optional: Close the login activity
-                                    
-                                } else if (role == "Admin") {
-                                    Intent intent = new Intent(login_page.this, admin_main.class);
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-                                    startActivity(intent);
-                                     // Optional: Close the login activity
-                                }
-                            } else {
-                                // Login failed, no user found
-                                Toast.makeText(login_page.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            // Handle errors
-                            Toast.makeText(login_page.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+        btnLogin.setEnabled(false); // Disable the button to prevent multiple clicks
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    btnLogin.setEnabled(true); // Re-enable the button
+
+                    if (task.isSuccessful()) {
+                        // Login successful
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
+                            navigateToMainActivity(role);
                         }
-                    });
-        });
-        
+                    } else {
+                        // Login failed
+                        Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
-
+    private void navigateToMainActivity(String role) {
+        Intent intent;
+        switch (role) {
+            case "users":
+                intent = new Intent(this, user_main.class);
+                break;
+            case "GramSevak":
+                intent = new Intent(this, gramsevak_main.class);
+                break;
+            case "Admin":
+                intent = new Intent(this, admin_main.class);
+                break;
+            default:
+                return;
+        }
+        startActivity(intent);
+        finish(); // Close the login activity
     }
 }

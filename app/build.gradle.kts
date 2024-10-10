@@ -54,6 +54,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+
     // Firebase Realtime Database
     implementation("com.google.firebase:firebase-database:19.7.0")
 
@@ -74,6 +75,9 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     implementation("androidx.appcompat:appcompat:1.4.1")
+
+    //Firebase Auth
+    implementation ("com.google.firebase:firebase-auth:23.0.0")
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.gsapro;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.Firebase;
@@ -30,7 +34,9 @@ public class registration_page_user extends AppCompatActivity {
     private EditText etName,etMobile,etAddress,etEmail,etPassword,etConfirmPassword;
     private Button btnRegister;
     FirebaseFirestore db;
-
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +53,12 @@ public class registration_page_user extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
         btnRegister = findViewById(R.id.btnRegister);
+        progressDialog = new ProgressDialog(this);
 
         //firebase instance
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +120,17 @@ public class registration_page_user extends AppCompatActivity {
                         .addOnFailureListener(e -> Log.w("UserRegistration", "Error adding document", e));
 
 
+                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            sendUserToNextActivity();
+                            Toast.makeText(registration_page_user.this, "Authwnticated!!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
 
 
 
@@ -132,5 +152,10 @@ public class registration_page_user extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void sendUserToNextActivity() {
+        Intent intent = new Intent(registration_page_user.this,user_main.class);
+        startActivity(intent);
     }
 }

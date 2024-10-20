@@ -28,6 +28,9 @@ public class admin_main extends AppCompatActivity {
     ImageButton butoon_drawer_toggle;
     NavigationView navigationView;
 
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,10 @@ public class admin_main extends AppCompatActivity {
         admin_drawer = findViewById(R.id.admin_main_drawer);
         butoon_drawer_toggle = findViewById(R.id.btnDrawerTongle);
         navigationView = findViewById(R.id.navigationView);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
 
         butoon_drawer_toggle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,5 +92,14 @@ public class admin_main extends AppCompatActivity {
 
 
 
+    }
+    public void updateNavHeader(){
+        navigationView = findViewById(R.id.navigationView);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = headerView.findViewById(R.id.adminusername);
+        TextView navEmail = headerView.findViewById(R.id.adminemail);
+
+        navUsername.setText(currentUser.getEmail());
+        navEmail.setText(currentUser.getDisplayName());
     }
 }

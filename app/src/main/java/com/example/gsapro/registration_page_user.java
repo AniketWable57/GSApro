@@ -111,11 +111,6 @@ public class registration_page_user extends AppCompatActivity {
                             etPassword.setText("");
                             etConfirmPassword.setText("");
 
-                            // after successfull registration -> Login Page
-
-                            Intent login_page = new Intent(getApplicationContext(),login_page.class);
-                            startActivity(login_page);
-
                         })
                         .addOnFailureListener(e -> Log.w("UserRegistration", "Error adding document", e));
 

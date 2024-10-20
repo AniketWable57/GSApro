@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +44,9 @@ public class add_gramsevak extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnAddGramsevak = findViewById(R.id.btnAddGramsevak);
         btnbackToadmin = findViewById(R.id.btnbackToadmin);
+
+
+
 
 
         btnbackToadmin.setOnClickListener(new View.OnClickListener() {

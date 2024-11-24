@@ -5,22 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.view_schemes"
+    tools:context=".applied_schemes">
 
-    >
-
-
+    <!-- res/layout/activity_applied_schemes.xml -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="35dp">
+        android:padding="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recyclerViewApplications"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

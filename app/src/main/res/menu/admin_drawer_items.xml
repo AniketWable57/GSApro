@@ -1,28 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/admin_dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard" />
 
     <item
-        android:id="@+id/viewProfile"
-        android:title="View Profile"/>
-
-
-    <item
-        android:id="@+id/addGramsevak"
-        android:title="Add GramSevak"
-        />
+        android:id="@+id/nav_manage_gramsevak"
+        android:title="Manage Gramsevak"
+        android:icon="@drawable/ic_dashboard" />
 
     <item
-        android:id="@+id/addScheme"
-        android:title="Add new Scheme"
-        />
+        android:id="@+id/nav_manage_schemes"
+        android:title="Manage Schemes"
+        android:icon="@drawable/ic_dashboard" /> <!-- Add a valid icon here -->
 
     <item
-        android:id="@+id/gramsevakList"
-        android:title="Gramsevak Details"
-        />
-    <item
-        android:id="@+id/SchemeList"
-        android:title="Scheme List"
-        />
-
+        android:id="@+id/nav_logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_logout" />
 </menu>

@@ -3,9 +3,15 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#BDBDBD</color>
-    <color name="colorPrimary">#6200EE</color> <!-- Change this to your primary color -->
+    <color name="orange">#FFA500</color> <!-- Example orange color -->
 
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="background_color">#EEEEEE</color>
-    <color name="blue_700">#7B1FA2</color>
+    <color name="light_gray">#F5F5F5</color> <!-- Lighter gray for backgrounds -->
+    <color name="colorPrimary">#6200EE</color> <!-- Main theme color -->
+    <color name="colorPrimaryDark">#3700B3</color> <!-- Darker shade for status bar -->
+    <color name="colorAccent">#FF4081</color> <!-- Accent color for highlights -->
+    <color name="background_color">#EEEEEE</color> <!-- General background color -->
+    <color name="blue_700">#7B1FA2</color> <!-- Used for buttons or highlights -->
+    <color name="success_green">#4CAF50</color> <!-- Green for success messages -->
+    <color name="error_red">#F44336</color> <!-- Red for error messages -->
+    <color name="info_blue">#2196F3</color> <!-- Blue for informational messages -->
 </resources>

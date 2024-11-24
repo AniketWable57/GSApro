@@ -1,51 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="200dp"
     android:orientation="vertical"
-    android:padding="20sp"
-    android:background="@color/white"
-    android:layout_marginTop="40dp"
-    >
+    android:gravity="center"
+    android:background="@color/colorPrimaryDark"
+    android:padding="16dp">
 
-    <androidx.cardview.widget.CardView
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/admin_profile_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="0dp"
-        android:backgroundTint="#E2E5DE">
-        
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_person"
+        android:src="@drawable/ic_person"
+        android:contentDescription="Admin Profile Image"
+        android:layout_gravity="center"
+        android:background="@drawable/circular_background"
+        android:padding="8dp" />
 
-            />
-        
-        
-    </androidx.cardview.widget.CardView>
-
+    <!-- Admin Name -->
     <TextView
-        android:id="@+id/adminusername"
+        android:id="@+id/admin_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="userName"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_marginTop="8dp"
+        android:text="Admin Name"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-medium" />
 
+    <!-- Admin Email -->
     <TextView
-        android:id="@+id/adminemail"
+        android:id="@+id/admin_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="userEmail"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
-        />
-
-
+        android:text="admin@example.com"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif" />
 
 </LinearLayout>

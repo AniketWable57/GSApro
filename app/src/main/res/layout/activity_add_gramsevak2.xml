@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:padding="16dp">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/headerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gramsevak Detail's"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="16dp" />
+
+    <!-- Form Card Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerTitle"
+        android:background="@drawable/form_card_background"
+        android:elevation="4dp"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <!-- Name Field -->
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext_background" />
+
+        <!-- Mobile Number Field -->
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mobile Number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edittext_background" />
+
+        <!-- Email Field -->
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edittext_background" />
+
+        <!-- Aadhar Card Number Field -->
+        <EditText
+            android:id="@+id/editTextAadharNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Aadhar Card Number"
+            android:inputType="number"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edittext_background" />
+
+        <!-- Assigned Village Field -->
+        <EditText
+            android:id="@+id/editTextAssignedVillage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Assigned Village"
+            android:inputType="text"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edittext_background" />
+
+        <!-- Password Field -->
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edittext_background" />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/buttonAddGramsevak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Gramsevak"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button_background"
+            android:padding="16dp"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+</RelativeLayout>

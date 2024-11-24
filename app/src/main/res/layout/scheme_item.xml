@@ -1,42 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/scheme_name"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18sp" />
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/scheme_criteria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            <!-- Profile Image on the Left -->
+            <ImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
 
-        <TextView
-            android:id="@+id/needed_documents"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            <!-- Scheme Name aligned to the right of the ImageView -->
+            <TextView
+                android:id="@+id/scheme_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/profileImageView"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/apply_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Apply" />
+            <!-- Scheme Criteria below the Scheme Name -->
+            <TextView
+                android:id="@+id/scheme_criteria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/scheme_name"
+                android:layout_toEndOf="@id/profileImageView"
+                android:layout_marginStart="16dp"
+                android:textSize="16sp" />
 
-    </LinearLayout>
+            <!-- Needed Documents below Scheme Criteria -->
+            <TextView
+                android:id="@+id/needed_documents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/scheme_criteria"
+                android:layout_toEndOf="@id/profileImageView"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="16sp" />
+
+            <!-- Apply Button in the bottom-right corner -->
+            <Button
+                android:id="@+id/apply_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

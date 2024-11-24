@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textSchemeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scheme Name"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textSchemeCriteria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scheme Criteria" />
+
+        <TextView
+            android:id="@+id/textNeededDocuments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Needed Documents" />
+
+        <Button
+            android:id="@+id/btnEditScheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit" />
+
+        <Button
+            android:id="@+id/btnDeleteScheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+    </LinearLayout>

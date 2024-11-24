@@ -1,105 +1,85 @@
 package com.example.gsapro.admin;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.gsapro.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class admin_main extends AppCompatActivity {
 
-    DrawerLayout admin_drawer;
-    ImageButton butoon_drawer_toggle;
-    NavigationView navigationView;
-
-    FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-
+    private DrawerLayout admin_drawer;
+    private NavigationView navigationView;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_main);
 
-        admin_drawer = findViewById(R.id.admin_main_drawer);
-        butoon_drawer_toggle = findViewById(R.id.btnDrawerTongle);
-        navigationView = findViewById(R.id.navigationView);
+        // Initialize Toolbar
+        Toolbar toolbar = findViewById(R.id.admin_toolbar);
+        setSupportActionBar(toolbar);
 
+        admin_drawer = findViewById(R.id.admin_main_drawer);
+        navigationView = findViewById(R.id.navigationView);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
+        // Set up the action bar toggle for the drawer
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, admin_drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        admin_drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-        butoon_drawer_toggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                admin_drawer.open();
-            }
-        });
-
+        // Set navigation item selection listener
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
-                if (itemId == R.id.viewProfile){
-                    Toast.makeText(admin_main.this, "Vew Profile Clicked", Toast.LENGTH_SHORT).show();
+                if (itemId == R.id.admin_dashboard) {
+                    Toast.makeText(admin_main.this, "Dashboard Clicked", Toast.LENGTH_SHORT).show();
+                } else if (itemId == R.id.nav_manage_gramsevak) {
+                    startActivity(new Intent(admin_main.this, ManageGramsevakActivity.class));
+                } else if (itemId == R.id.nav_manage_schemes) {
+                    startActivity(new Intent(admin_main.this, ManageSchemeActivity.class));
+                } else if (itemId == R.id.nav_logout) {
+                    mAuth.signOut();
+                    Toast.makeText(admin_main.this, "Logged out", Toast.LENGTH_SHORT).show();
+                    finish(); // Close the activity
                 }
 
-                if (itemId == R.id.addGramsevak){
-                    Intent toAddGramSevakpage = new Intent(admin_main.this, add_gramsevak.class);
-                    startActivity(toAddGramSevakpage);
-
-                }
-
-                if (itemId == R.id.addScheme){
-                    Intent toAddNewScheme = new Intent(admin_main.this, add_new_schemes.class);
-                    startActivity(toAddNewScheme);
-                }
-
-                if (itemId == R.id.gramsevakList){
-                    Intent toGramsevakList = new Intent(admin_main.this, gramsevak_list.class);
-                    startActivity(toGramsevakList);
-
-                }
-                if (itemId == R.id.SchemeList){
-                    Intent toSchemeList = new Intent(admin_main.this, view_schemes.class);
-                    startActivity(toSchemeList);
-
-                }
-
-                admin_drawer.close();
-
-                return false;
+                // Close the drawer after item selection
+                admin_drawer.closeDrawers();
+                return true;
             }
+
         });
-
-
-
     }
-    public void updateNavHeader(){
-        navigationView = findViewById(R.id.navigationView);
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = headerView.findViewById(R.id.adminusername);
-        TextView navEmail = headerView.findViewById(R.id.adminemail);
 
-        navUsername.setText(currentUser.getEmail());
-        navEmail.setText(currentUser.getDisplayName());
-    }
+
+//    private void updateNavHeader() {
+//        View headerView = navigationView.getHeaderView(0);
+//        TextView navUsername = headerView.findViewById(R.id.adminusername);
+//        TextView navEmail = headerView.findViewById(R.id.adminemail);
+//
+//        if (currentUser != null) {
+//            navUsername.setText(currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "Admin");
+//            navEmail.setText(currentUser.getEmail());
+//        }
+//    }
 }

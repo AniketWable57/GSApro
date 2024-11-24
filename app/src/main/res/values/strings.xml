@@ -15,9 +15,16 @@
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
-        <!-- Other string resources -->
-        <string name="open">Open</string>
-        <string name="close">Close</string>
+    <!-- Other string resources -->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string-array name="complaint_status_options">
+        <item>Pending</item>
+        <item>Under Process</item>
+        <item>Solved</item>
+        <item>Rejected</item>
+    </string-array>
 
 
 </resources>

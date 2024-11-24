@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+
+
+    <!-- res/layout/item_application.xml -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_margin="8dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewSchemeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scheme Name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/textViewApplicationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Application Date"
+            android:textSize="14sp"
+            android:paddingBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textSize="14sp"
+            android:paddingBottom="8dp"/>
+
+        <!-- Delete Button -->
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:backgroundTint="#FF4444"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="right"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

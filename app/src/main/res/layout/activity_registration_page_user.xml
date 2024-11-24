@@ -38,7 +38,7 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="  Name"
                 android:inputType="textPersonName"
                 android:drawableLeft="@drawable/ic_person"
                 android:padding="12dp"
@@ -50,7 +50,7 @@
                 android:id="@+id/etMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mobile Number"
+                android:hint="  Mobile Number"
                 android:inputType="phone"
                 android:drawableLeft="@drawable/ic_phone"
                 android:padding="12dp"
@@ -62,7 +62,7 @@
                 android:id="@+id/etAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address"
+                android:hint="  Address"
                 android:inputType="textPostalAddress"
                 android:drawableLeft="@drawable/ic_location"
                 android:padding="12dp"
@@ -74,19 +74,29 @@
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="  Email"
                 android:inputType="textEmailAddress"
                 android:drawableLeft="@drawable/ic_email"
                 android:padding="12dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_edittext" />
 
+            <EditText
+                android:id="@+id/etAdhar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="  Adhar"
+
+                android:drawableLeft="@drawable/ic_adhar"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext" />
             <!-- Password Field -->
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="  Password"
                 android:inputType="textPassword"
                 android:drawableLeft="@drawable/ic_lock"
                 android:padding="12dp"
@@ -98,7 +108,7 @@
                 android:id="@+id/etConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirm Password"
+                android:hint="  Confirm Password"
                 android:inputType="textPassword"
                 android:drawableLeft="@drawable/ic_lock"
                 android:padding="12dp"
@@ -116,6 +126,18 @@
                 android:padding="12dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_already_account"
+                android:text="I Already have a account !"
+                android:paddingTop="5sp"
+                android:layout_gravity="right"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:padding="20sp"
+                />
 
             <TextView
                 android:id="@+id/tvFooter"

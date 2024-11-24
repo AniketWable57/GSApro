@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,10 +19,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.core.Tag;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.Firebase;
@@ -31,12 +36,13 @@ import java.util.Map;
 public class registration_page_user extends AppCompatActivity {
 
     //Declarations
-    private EditText etName,etMobile,etAddress,etEmail,etPassword,etConfirmPassword;
+    private EditText etName,etMobile,etAddress,etEmail,etPassword,etConfirmPassword,etAdhar;
     private Button btnRegister;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    ProgressDialog progressDialog;
+    ProgressBar progressBar;
+    TextView already_account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +59,23 @@ public class registration_page_user extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
         btnRegister = findViewById(R.id.btnRegister);
-        progressDialog = new ProgressDialog(this);
+        already_account = findViewById(R.id.txt_already_account);
+        etAdhar = findViewById(R.id.etAdhar);
+        //progressBar = findViewById(R.id.progressBar);
 
         //firebase instance
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
+        already_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                  Intent toLoginPage = new Intent(registration_page_user.this, login_page.class);
+                  startActivity(toLoginPage);
+                  finish();
+            }
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,48 +87,30 @@ public class registration_page_user extends AppCompatActivity {
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
                 String confirmPassword = etConfirmPassword.getText().toString().trim();
+                String adhar = etAdhar.getText().toString().trim();
 
-                // Log the values to check if they are being captured correctly
-                Log.d("UserRegistration", "Name: " + name);
-                Log.d("UserRegistration", "Mobile: " + mobile);
-                Log.d("UserRegistration", "Address: " + address);
-                Log.d("UserRegistration", "Email: " + email);
-                Log.d("UserRegistration", "Password: " + password);
-                Log.d("UserRegistration", "Confirm Password: " + confirmPassword);
 
                 if (name.isEmpty() || mobile.isEmpty() || address.isEmpty() || email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(registration_page_user.this, "All Fields are complesary", Toast.LENGTH_SHORT).show();
                     // Handle empty fields, e.g., by showing a Toast message to the user
-                } else if (etPassword != etConfirmPassword) {
+                } else if (!password.equals(confirmPassword)) {
 
                     Toast.makeText(registration_page_user.this, "Password Dosent Match", Toast.LENGTH_SHORT).show();
                 }
 
+               // progressBar.setVisibility();
 
                 Map<String, Object> user = new HashMap<>();
                 user.put("name", name);
                 user.put("mobile", mobile);
                 user.put("address", address);
                 user.put("email", email);
+                user.put("adhar", adhar);
                 user.put("password", password);
 
+
+
                 // Add a new document with a generated ID
-                db.collection("users")
-                        .add(user)
-                        .addOnSuccessListener(documentReference -> {
-                            // Show success message
-                            Toast.makeText(registration_page_user.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-
-                            // Reset the input fields
-                            etName.setText("");
-                            etMobile.setText("");
-                            etAddress.setText("");
-                            etEmail.setText("");
-                            etPassword.setText("");
-                            etConfirmPassword.setText("");
-
-                        })
-                        .addOnFailureListener(e -> Log.w("UserRegistration", "Error adding document", e));
 
 
                 mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -121,9 +119,51 @@ public class registration_page_user extends AppCompatActivity {
                         if (task.isSuccessful()){
                             sendUserToNextActivity();
                             Toast.makeText(registration_page_user.this, "Authwnticated!!", Toast.LENGTH_SHORT).show();
+
+                            String userID = mAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = db.collection("users").document(userID);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("name", name);
+                            user.put("mobile", mobile);
+                            user.put("address", address);
+                            user.put("email", email);
+                            user.put("password", password);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(registration_page_user.this, "User Creates"+userID, Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            
+
+
+                           /* db.collection("users")
+                                    .add(user)
+                                    .addOnSuccessListener(documentReference -> {
+                                        // Show success message
+                                        Toast.makeText(registration_page_user.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+
+                                        // Reset the input fields
+                                        etName.setText("");
+                                        etMobile.setText("");
+                                        etAddress.setText("");
+                                        etEmail.setText("");
+                                        etPassword.setText("");
+                                        etConfirmPassword.setText("");
+
+                                    })
+                                    .addOnFailureListener(e -> Log.w("UserRegistration", "Error adding document", e));
+
+
+                            */
+
+                        }else{
+                            Toast.makeText(registration_page_user.this, "", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
+
 
 
 

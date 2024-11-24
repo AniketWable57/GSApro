@@ -34,7 +34,7 @@ public class view_schemes extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         schemeList = new ArrayList<>();
-        schemeAdapter = new SchemeAdapter(schemeList);
+        schemeAdapter = new SchemeAdapter(schemeList,this);
         recyclerView.setAdapter(schemeAdapter);
 
         db = FirebaseFirestore.getInstance();

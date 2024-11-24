@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class user_main extends AppCompatActivity {
 
-    CardView user_home,user_scheme_list,user_profile,user_settings,user_applied_schemes,user_logout;
+    CardView user_complaints,user_scheme_list,user_profile,user_settings,user_applied_schemes,user_logout;
     private FirebaseAuth mAuth;
 
     @Override
@@ -35,9 +35,12 @@ public class user_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
 
-        user_home = findViewById(R.id.user_home);
+        user_complaints = findViewById(R.id.user_complaints);
         user_scheme_list = findViewById(R.id.user_scheme_list);
         user_logout = findViewById(R.id.user_logout);
+        user_profile = findViewById(R.id.user_profile);
+        user_applied_schemes = findViewById(R.id.user_applied_schemes);
+        user_settings = findViewById(R.id.user_document);
 
 
         // Initialize FirebaseAuth instance
@@ -70,10 +73,12 @@ public class user_main extends AppCompatActivity {
 
 
 
-        user_home.setOnClickListener(new View.OnClickListener() {
+
+        user_complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(user_main.this, "Home Cliscked!!", Toast.LENGTH_SHORT).show();
+                Intent toComplaintActivity = new Intent(user_main.this, ComplaintsActivity.class);
+                startActivity(toComplaintActivity);
             }
         });
 
@@ -84,6 +89,31 @@ public class user_main extends AppCompatActivity {
                 startActivity(toViewSchemes);
             }
         });
+        
+        user_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              Intent toUserProfile = new Intent(user_main.this,UserProfileActivity.class);
+              startActivity(toUserProfile);
+            }
+        });
+
+        user_applied_schemes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toUserProfile = new Intent(user_main.this,applied_schemes.class);
+                startActivity(toUserProfile);
+            }
+        });
+
+        user_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toUploadDocuments = new Intent(user_main.this,document_upload.class);
+                startActivity(toUploadDocuments);
+            }
+        });
+
 
 
 

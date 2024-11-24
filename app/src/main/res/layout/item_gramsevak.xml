@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:elevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/black" /> <!-- Change to your desired color -->
+
+        <TextView
+            android:id="@+id/textEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="16sp"
+            android:textColor="@color/black" /> <!-- Change to your desired color -->
+
+        <TextView
+            android:id="@+id/textPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:textSize="16sp"
+            android:textColor="@color/black" /> <!-- Change to your desired color -->
+        <TextView
+            android:id="@+id/textAadharNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aadhar Card Number"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textAssignedVillage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assigned Village"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+
+        <!-- Buttons Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <!-- Edit Button -->
+            <Button
+                android:id="@+id/btnEditGramsevak"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Edit  "
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@drawable/ic_edit"
+                android:drawablePadding="4dp"
+           />  <!-- Reduced padding -->
+
+            <!-- Delete Button -->
+            <Button
+                android:id="@+id/btnDeleteGramsevak"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Delete  "
+                android:layout_weight="1"
+                android:backgroundTint="@color/error_red"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@drawable/ic_delete"
+                android:drawablePadding="4dp"   />  <!-- Reduced padding -->
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
